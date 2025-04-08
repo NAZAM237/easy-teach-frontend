@@ -1,0 +1,76 @@
+/* Layout principal */
+.sidebar-layout {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    background-color: hsl(var(--muted)/0.1); /* bg-muted/10 */
+}
+
+/* Sidebar Header */
+.sidebar-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid hsl(var(--border)/0.4); /* border-b border-border/40 */
+    padding: 0.75rem 1rem; /* px-4 py-3 */
+}
+
+.header-logo-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem; /* gap-2 */
+}
+
+.logo-icon {
+    display: flex;
+    height: 2rem; /* h-8 */
+    width: 2rem; /* w-8 */
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px; /* rounded-full */
+    background-color: hsl(var(--primary)); /* bg-primary */
+}
+
+.logo-icon svg {
+    height: 1rem; /* h-4 */
+    width: 1rem; /* w-4 */
+    color: hsl(var(--primary-foreground)); /* text-primary-foreground */
+}
+
+.logo-text {
+    font-size: 1.125rem; /* text-lg */
+    font-weight: 600; /* font-semibold */
+}
+
+/* Sidebar Content */
+.sidebar-group-label {
+    /* Vos styles pour le label de groupe */
+    font-size: 0.875rem;
+    color: hsl(var(--muted-foreground));
+    padding: 0.5rem 1rem;
+}
+
+.sidebar-menu-button {
+    /* Styles de base du bouton */
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    width: 100%;
+    transition: background-color 0.2s;
+}
+
+.sidebar-menu-button[data-active="true"] {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+.sidebar-menu-button:hover {
+    background-color: hsl(var(--accent));
+    color: hsl(var(--accent-foreground));
+}
+
+.sidebar-menu-button svg {
+    height: 1rem;
+    width: 1rem;
+}
