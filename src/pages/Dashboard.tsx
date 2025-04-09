@@ -42,6 +42,7 @@ import SalesPageGenerator from "@/components/dashboard/SalesPageGenerator";
 import LeadGeneration from "@/components/dashboard/LeadGeneration";
 import EmailCampaigns from "@/components/dashboard/EmailCampaigns";
 import CourseCreation from "@/components/dashboard/CourseCreation.tsx";
+import TrainingPath from "@/components/dashboard/TrainingPath.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -56,7 +57,7 @@ const Dashboard = () => {
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-primary">
                 <BookOpen className="h-4 w-4 text-primary-foreground" />
               </div>
-              <span className="text-lg font-semibold">FormaGest</span>
+              <span className="text-lg font-semibold">EasyTeach</span>
             </div>
             <SidebarTrigger />
           </SidebarHeader>
@@ -85,10 +86,10 @@ const Dashboard = () => {
                   </SidebarMenuItem>
                   
                   <SidebarMenuItem>
-                    <SidebarMenuButton asChild isActive={location.pathname.includes("/dashboard/course-creation")}>
-                      <Link to="/dashboard/course-creation">
+                    <SidebarMenuButton asChild isActive={location.pathname.includes("/dashboard/training-path")}>
+                      <Link to="/dashboard/training-path">
                         <FolderPlus />
-                        <span>Créer une formation</span>
+                        <span>Parcours de formations</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -97,7 +98,7 @@ const Dashboard = () => {
                     <SidebarMenuButton asChild isActive={location.pathname.includes("/dashboard/users")}>
                       <Link to="/dashboard/users">
                         <Users />
-                        <span>Utilisateurs</span>
+                        <span>Apprenants</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -191,7 +192,7 @@ const Dashboard = () => {
               </Avatar>
               <div className="flex flex-col">
                 <span className="text-sm font-medium">Admin</span>
-                <span className="text-xs text-muted-foreground">admin@formagest.com</span>
+                <span className="text-xs text-muted-foreground">admin@esayteach.com</span>
               </div>
             </div>
           </SidebarFooter>
@@ -222,6 +223,7 @@ const Dashboard = () => {
             <Routes>
               <Route path="/" element={<DashboardOverview />} />
               <Route path="/courses" element={<CourseManagement />} />
+              <Route path="/training-path" element={<TrainingPath />} />
               <Route path="/course-creation" element={<CourseCreation />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/calendar" element={<DashboardCalendar />} />

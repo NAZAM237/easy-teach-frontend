@@ -5,19 +5,19 @@ import {Button} from "@/components/ui/button";
 import {Table, TableBody, TableCell, TableHead, TableHeader, TableRow} from "@/components/ui/table";
 import {Input} from "@/components/ui/input";
 import {
-    BookOpenCheck,
-    Calendar,
-    Clock,
-    Edit,
-    FileText,
-    Film,
-    Filter,
-    Grid3X3,
-    MoreVertical,
-    Plus,
-    Search,
-    Trash,
-    Users
+  BookOpenCheck,
+  Calendar,
+  Clock,
+  Edit,
+  FileText,
+  Film,
+  Filter,
+  Grid3X3,
+  MoreVertical,
+  Plus,
+  Search,
+  Trash,
+  Users
 } from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
@@ -98,13 +98,13 @@ const CourseManagement = () => {
   
   const handleDelete = (id: number) => {
     toast.info("Cette fonctionnalité sera disponible prochainement", {
-      description: "La suppression n'est pas implémentée dans cette démo"
+      description: "La suppression n'est pas implémentée dans cette démo" +id
     });
   };
   
   const handleEdit = (id: number) => {
     toast.info("Cette fonctionnalité sera disponible prochainement", {
-      description: "L'édition n'est pas implémentée dans cette démo"
+      description: "L'édition n'est pas implémentée dans cette démo" +id
     });
   };
 

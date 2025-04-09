@@ -9,7 +9,7 @@ const Footer = () => {
                     <div>
                         <div className="flex items-center mb-4">
                             <BookOpen className="w-6 h-6 mr-2" />
-                            <span className="text-xl font-bold">FormaPro</span>
+                            <span className="text-xl font-bold">EasyTeach</span>
                         </div>
                         <p className="text-gray-400 mb-4">
                             La solution tout-en-un pour les formateurs et organismes de formation.
@@ -49,7 +49,7 @@ const Footer = () => {
 
                 <div className="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center">
                     <p className="text-gray-500 text-sm mb-4 md:mb-0">
-                        © {new Date().getFullYear()} FormaPro. Tous droits réservés.
+                        © {new Date().getFullYear()} EasyTeach. Tous droits réservés.
                     </p>
                     <div className="flex gap-4">
                         <a href="#" className="text-gray-500 hover:text-white">Confidentialité</a>

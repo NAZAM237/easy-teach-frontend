@@ -67,7 +67,7 @@ const EmailCampaigns = () => {
   const handleDuplicate = (id: number) => {
     toast({
       title: "Campagne dupliquée",
-      description: "Une copie de cette campagne a été créée.",
+      description: "Une copie de cette campagne a été créée." +id,
     });
   };
 

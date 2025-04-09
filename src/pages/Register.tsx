@@ -59,8 +59,8 @@ const Register = () => {
                                 <BookOpen className="h-6 w-6 text-primary-foreground" />
                             </div>
                         </div>
-                        <h1 className="text-2xl font-bold">FormaGest</h1>
-                        <p className="text-muted-foreground mt-2">Créez votre compte FormaGest</p>
+                        <h1 className="text-2xl font-bold">EasyTeach</h1>
+                        <p className="text-muted-foreground mt-2">Créez votre compte EasyTeach</p>
                     </div>
 
                     <Card className="w-full shadow-lg animate-fade-in">
@@ -180,7 +180,7 @@ const Register = () => {
                                 Politique de confidentialité
                             </a>
                         </p>
-                        <p className="mt-2">&copy; {new Date().getFullYear()} FormaGest. Tous droits réservés.</p>
+                        <p className="mt-2">&copy; {new Date().getFullYear()} EasyTeach. Tous droits réservés.</p>
                     </div>
                 </div>
             </div>
@@ -192,7 +192,7 @@ const Register = () => {
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-indigo-600">
                             <BookOpen className="h-6 w-6" />
                         </div>
-                        <h1 className="text-3xl font-bold text-white">FormaGest</h1>
+                        <h1 className="text-3xl font-bold text-white">EasyTeach</h1>
                     </div>
                     <div className="space-y-6 mt-20">
                         <h2 className="text-4xl font-bold text-white leading-tight">Rejoignez notre communauté de formateurs</h2>
@@ -220,7 +220,7 @@ const Register = () => {
                             Politique de confidentialité
                         </a>
                     </p>
-                    <p className="mt-2">&copy; {new Date().getFullYear()} FormaGest. Tous droits réservés.</p>
+                    <p className="mt-2">&copy; {new Date().getFullYear()} EasyTeach. Tous droits réservés.</p>
                 </div>
             </div>
         </div>

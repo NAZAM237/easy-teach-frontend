@@ -91,13 +91,13 @@ const UserManagement = () => {
   
   const handleDelete = (id: number) => {
     toast.info("Cette fonctionnalité sera disponible prochainement", {
-      description: "La suppression n'est pas implémentée dans cette démo"
+      description: "La suppression n'est pas implémentée dans cette démo" + id
     });
   };
   
   const handleEdit = (id: number) => {
     toast.info("Cette fonctionnalité sera disponible prochainement", {
-      description: "L'édition n'est pas implémentée dans cette démo"
+      description: "L'édition n'est pas implémentée dans cette démo" + id
     });
   };
   
@@ -112,12 +112,12 @@ const UserManagement = () => {
       <AnimatedSection>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
           <div>
-            <h1 className="text-3xl font-bold">Gestion des utilisateurs</h1>
-            <p className="text-muted-foreground">Gérez les formateurs et les participants</p>
+            <h1 className="text-3xl font-bold">Gestion des Apprenants</h1>
+            <p className="text-muted-foreground">Gérez les participants à vos formations</p>
           </div>
           <Button onClick={handleCreateUser}>
             <Plus className="mr-2 h-4 w-4" />
-            Nouvel utilisateur
+            Ajouter un apprenant
           </Button>
         </div>
       </AnimatedSection>
@@ -127,9 +127,9 @@ const UserManagement = () => {
           <CardHeader className="pb-3">
             <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
               <div>
-                <CardTitle>Utilisateurs</CardTitle>
+                <CardTitle>Apprenants</CardTitle>
                 <CardDescription>
-                  Gérez les utilisateurs de votre plateforme de formation
+                  Gérez les apprenants de vos formations. Vous pouvez les ajouter, les modifier ou les supprimer.
                 </CardDescription>
               </div>
               

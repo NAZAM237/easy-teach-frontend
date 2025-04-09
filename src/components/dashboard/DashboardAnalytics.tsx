@@ -1,19 +1,19 @@
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {ChartContainer, ChartTooltip, ChartTooltipContent} from "@/components/ui/chart";
 import {
-    Bar,
-    BarChart,
-    CartesianGrid,
-    Cell,
-    Legend,
-    Line,
-    LineChart,
-    Pie,
-    PieChart,
-    ResponsiveContainer,
-    Tooltip,
-    XAxis,
-    YAxis
+  Bar,
+  BarChart,
+  CartesianGrid,
+  Cell,
+  Legend,
+  Line,
+  LineChart,
+  Pie,
+  PieChart,
+  ResponsiveContainer,
+  Tooltip,
+  XAxis,
+  YAxis
 } from "recharts";
 import {Award, BookOpen, TrendingUp, Users} from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
@@ -179,7 +179,7 @@ const DashboardAnalytics = () => {
                       label={({ name, percent }) => `${name} ${(percent * 100).toFixed(0)}%`}
                     >
                       {categoryData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} name={entry.name} />
                       ))}
                     </Pie>
                     <Tooltip />
@@ -206,8 +206,8 @@ const DashboardAnalytics = () => {
                     <YAxis dataKey="name" type="category" />
                     <Tooltip />
                     <Bar dataKey="value" fill="#8B5CF6" radius={[0, 4, 4, 0]}>
-                      {satisfactionData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[3]} />
+                      {satisfactionData.map((_, index) => (
+                          <Cell key={`cell-${index}`} fill={COLORS[3]} />
                       ))}
                     </Bar>
                   </BarChart>

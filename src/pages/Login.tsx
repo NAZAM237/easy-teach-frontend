@@ -28,7 +28,7 @@ const Login = () => {
                 // Redirection vers le dashboard après connexion réussie
                 toast({
                     title: "Connexion réussie",
-                    description: "Bienvenue sur votre espace FormaGest",
+                    description: "Bienvenue sur votre espace EasyTeach",
                 });
                 navigate('/dashboard');
             }, 1500);
@@ -48,7 +48,7 @@ const Login = () => {
                         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-blue-600">
                             <BookOpen className="h-6 w-6" />
                         </div>
-                        <h1 className="text-3xl font-bold text-white">FormaGest</h1>
+                        <h1 className="text-3xl font-bold text-white">EasyTeach</h1>
                     </div>
                     <div className="space-y-6 mt-20">
                         <h2 className="text-4xl font-bold text-white leading-tight">Transformez votre passion en formations impactantes</h2>
@@ -66,7 +66,7 @@ const Login = () => {
                 </div>
 
                 <div className="text-white/70 z-10 mt-auto">
-                    <p>&copy; {new Date().getFullYear()} FormaGest. Tous droits réservés.</p>
+                    <p>&copy; {new Date().getFullYear()} EasyTeach. Tous droits réservés.</p>
                 </div>
             </div>
 
@@ -79,7 +79,7 @@ const Login = () => {
                                 <BookOpen className="h-6 w-6 text-primary-foreground" />
                             </div>
                         </div>
-                        <h1 className="text-2xl font-bold">FormaGest</h1>
+                        <h1 className="text-2xl font-bold">EasyTeach</h1>
                         <p className="text-muted-foreground mt-2">Connectez-vous à votre espace</p>
                     </div>
 
@@ -158,7 +158,7 @@ const Login = () => {
                     </Card>
 
                     <div className="text-center mt-8 text-sm text-muted-foreground lg:hidden">
-                        <p>&copy; {new Date().getFullYear()} FormaGest. Tous droits réservés.</p>
+                        <p>&copy; {new Date().getFullYear()} EasyTeach. Tous droits réservés.</p>
                     </div>
                 </div>
             </div>

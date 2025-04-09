@@ -34,9 +34,9 @@ const SalesPageGenerator = () => {
     });
   };
 
-  const handleDuplicate = (id: number) => {
+  const handleDuplicate = (id?: number) => {
     toast({
-      title: "Page dupliquée",
+      title: "Page "+ id +" dupliquée",
       description: "Une copie de cette page a été créée.",
     });
   };

@@ -1,4 +1,3 @@
-import {useState} from "react";
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
 import {Input} from "@/components/ui/input";
@@ -13,11 +12,9 @@ import {Bell, Building, Save, Shield, User} from "lucide-react";
 import {toast} from "sonner";
 
 const DashboardSettings = () => {
-  const [formSubmitted, setFormSubmitted] = useState(false);
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    setFormSubmitted(true);
     
     toast.success("Paramètres sauvegardés avec succès", {
       description: "Vos modifications ont été enregistrées"
@@ -92,7 +89,7 @@ const DashboardSettings = () => {
                       
                       <div className="space-y-2">
                         <Label htmlFor="email">Adresse email</Label>
-                        <Input id="email" type="email" defaultValue="admin@formagest.com" />
+                        <Input id="email" type="email" defaultValue="admin@easyteach.com" />
                       </div>
                       
                       <div className="space-y-2">
@@ -105,7 +102,7 @@ const DashboardSettings = () => {
                         <Textarea
                           id="bio"
                           rows={4}
-                          defaultValue="Administrateur de la plateforme FormaGest."
+                          defaultValue="Administrateur de la plateforme EasyTeach."
                         />
                       </div>
                     </div>
@@ -134,7 +131,7 @@ const DashboardSettings = () => {
                     <div className="space-y-4">
                       <div className="space-y-2">
                         <Label htmlFor="platformName">Nom de la plateforme</Label>
-                        <Input id="platformName" defaultValue="FormaGest" />
+                        <Input id="platformName" defaultValue="EasyTeach" />
                       </div>
                       
                       <div className="space-y-2">
