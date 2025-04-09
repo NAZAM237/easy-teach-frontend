@@ -4,7 +4,7 @@ import {ArrowRight, BarChart, Users} from "lucide-react";
 const Hero = () => {
     return (
         <section className="bg-gradient-to-r from-indigo-600 to-violet-600 text-white">
-            <div className="container mx-auto px-6 pb-16 pt-40">
+            <div className="container mx-auto px-6 pb-16 pt-32">
                 <div className="flex flex-col lg:flex-row items-center gap-12">
                     <div className="lg:w-1/2 space-y-8 animate-fade-in" style={{ '--delay': '100ms' } as React.CSSProperties}>
                         <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
