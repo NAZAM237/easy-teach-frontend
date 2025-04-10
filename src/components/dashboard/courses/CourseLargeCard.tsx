@@ -65,13 +65,13 @@ export const CourseLargeCard = ({ course }: CourseCardProps) => {
     return (
         <Card
             key={course.id}
-            className="overflow-hidden transition-all hover:shadow-md hover:scale-[1.02] hover:border-primary/40 cursor-pointer"
+            className="grid grid-cols-2 overflow-hidden transition-all hover:shadow-md hover:scale-[1.02] hover:border-primary/40 cursor-pointer"
         >
-            <div className="aspect-[16/9] relative overflow-hidden">
+            <div className="aspect-[16/9] relative overflow-hidden flex justify-center items-center">
                 <img
                     src={course.image}
                     alt={course.title}
-                    className="w-full h-full object-cover transition-transform hover:scale-105 duration-300"
+                    className="w-4/5 h-4/5 rounded-lg object-cover transition-transform hover:scale-105 duration-300"
                 />
                 <div className="absolute top-3 right-3">
                   <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${getStatusColor(course.status)}`}>
@@ -79,65 +79,67 @@ export const CourseLargeCard = ({ course }: CourseCardProps) => {
                   </span>
                 </div>
             </div>
-            <CardHeader className="pb-2">
-                <div className="flex justify-between items-start">
-                    <div>
-                        <CardTitle className="text-lg leading-tight">{course.title}</CardTitle>
-                        <CardDescription className="text-sm mt-1">{course.category}</CardDescription>
+            <div>
+                <CardHeader className="pb-2">
+                    <div className="flex justify-between items-start">
+                        <div>
+                            <CardTitle className="text-lg leading-tight">{course.title}</CardTitle>
+                            <CardDescription className="text-sm mt-1">{course.category}</CardDescription>
+                        </div>
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" size="icon" className="h-8 w-8">
+                                    <MoreVertical className="h-4 w-4" />
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent align="end">
+                                <DropdownMenuItem onClick={() => handleEdit(course.id)}>
+                                    <Edit className="mr-2 h-4 w-4" />
+                                    Modifier
+                                </DropdownMenuItem>
+                                <DropdownMenuItem onClick={() => handleDelete(course.id)}>
+                                    <Trash className="mr-2 h-4 w-4" />
+                                    Supprimer
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <FileText className="mr-2 h-4 w-4" />
+                                    Contenu
+                                </DropdownMenuItem>
+                                <DropdownMenuItem>
+                                    <Users className="mr-2 h-4 w-4" />
+                                    Participants
+                                </DropdownMenuItem>
+                            </DropdownMenuContent>
+                        </DropdownMenu>
                     </div>
-                    <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                            <Button variant="ghost" size="icon" className="h-8 w-8">
-                                <MoreVertical className="h-4 w-4" />
-                            </Button>
-                        </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                            <DropdownMenuItem onClick={() => handleEdit(course.id)}>
-                                <Edit className="mr-2 h-4 w-4" />
-                                Modifier
-                            </DropdownMenuItem>
-                            <DropdownMenuItem onClick={() => handleDelete(course.id)}>
-                                <Trash className="mr-2 h-4 w-4" />
-                                Supprimer
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <FileText className="mr-2 h-4 w-4" />
-                                Contenu
-                            </DropdownMenuItem>
-                            <DropdownMenuItem>
-                                <Users className="mr-2 h-4 w-4" />
-                                Participants
-                            </DropdownMenuItem>
-                        </DropdownMenuContent>
-                    </DropdownMenu>
-                </div>
-            </CardHeader>
-            <CardContent>
-                <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{course.description}</p>
-                <div className="flex flex-wrap gap-2 mb-3">
-                    <div className="flex items-center text-xs text-muted-foreground">
-                        <Clock className="mr-1 h-3.5 w-3.5" />
-                        {course.duration}
+                </CardHeader>
+                <CardContent>
+                    <p className="text-sm text-muted-foreground mb-4 line-clamp-2">{course.description}</p>
+                    <div className="flex flex-wrap gap-2 mb-3">
+                        <div className="flex items-center text-xs text-muted-foreground">
+                            <Clock className="mr-1 h-3.5 w-3.5" />
+                            {course.duration}
+                        </div>
+                        <div className="flex items-center text-xs text-muted-foreground">
+                            <Users className="mr-1 h-3.5 w-3.5" />
+                            {course.students} participants
+                        </div>
+                        <div className="flex items-center text-xs text-muted-foreground">
+                            <BookOpenCheck className="mr-1 h-3.5 w-3.5" />
+                            {course.modules} modules
+                        </div>
                     </div>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                        <Users className="mr-1 h-3.5 w-3.5" />
-                        {course.students} participants
+                    <div className="flex items-center justify-between">
+                        <div className="flex items-center">
+                            <GraduationCap className="mr-1 h-3.5 w-3.5 text-muted-foreground" />
+                            {getLevelBadge(course.level)}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                            Par {course.instructor}
+                        </div>
                     </div>
-                    <div className="flex items-center text-xs text-muted-foreground">
-                        <BookOpenCheck className="mr-1 h-3.5 w-3.5" />
-                        {course.modules} modules
-                    </div>
-                </div>
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center">
-                        <GraduationCap className="mr-1 h-3.5 w-3.5 text-muted-foreground" />
-                        {getLevelBadge(course.level)}
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                        Par {course.instructor}
-                    </div>
-                </div>
-            </CardContent>
+                </CardContent>
+            </div>
         </Card>
     );
 };

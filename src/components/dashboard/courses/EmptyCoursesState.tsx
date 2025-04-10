@@ -5,7 +5,7 @@ interface EmptyCoursesStateProps {
     onClearSearch?: () => void;
 }
 
-export const EmptyCoursesState = ({ onClearSearch }: EmptyCoursesStateProps) => {
+const EmptyCoursesState = ({ onClearSearch }: EmptyCoursesStateProps) => {
     return (
         <div className="text-center py-10">
             <BookOpen className="mx-auto h-10 w-10 text-muted-foreground mb-4" />
@@ -19,3 +19,14 @@ export const EmptyCoursesState = ({ onClearSearch }: EmptyCoursesStateProps) => 
         </div>
     );
 };
+
+const EmptyParcoursState = () => {
+    return (
+        <div className="text-center py-10">
+            <BookOpen className="mx-auto h-10 w-10 text-muted-foreground mb-4" />
+            <h3 className="text-lg font-medium mb-2">Il n'y a rien ici pour le moment</h3>
+        </div>
+    )
+}
+
+export {EmptyCoursesState, EmptyParcoursState};
