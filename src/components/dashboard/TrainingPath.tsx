@@ -1,14 +1,16 @@
 import {useState} from "react";
 import {Link} from "react-router-dom";
-import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Filter, Grid3X3, Plus, Search} from "lucide-react";
+import {Plus} from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
+import {EmptyCoursesState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
+import {CardContent} from "@/components/ui/card.tsx";
+import {coursesData} from "@/data/coursesData.ts";
+import {CourseLargeCard} from "@/components/dashboard/courses/CourseLargeCard.tsx";
 
 const TrainingPath = () => {
-    const [searchTerm, setSearchTerm] = useState("");
+    const [activeTab, setActiveTab] = useState("published");
 
     return (
         <div className="space-y-6">
@@ -28,58 +30,26 @@ const TrainingPath = () => {
             </AnimatedSection>
 
             <AnimatedSection delay={100}>
-                <Card>
-                    <CardHeader className="pb-3">
-                        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                            <div>
-                                <CardTitle>Parcours de formations</CardTitle>
-                                <CardDescription>
-                                    Gérez vos parcours de formations/packs de cours
-                                </CardDescription>
-                            </div>
-
-                            <div className="flex flex-col gap-3 sm:flex-row">
-                                <div className="relative">
-                                    <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
-                                    <Input
-                                        type="search"
-                                        placeholder="Rechercher..."
-                                        className="pl-8"
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
+                <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-4">
+                    <TabsList>
+                        <TabsTrigger value="published">Publiés</TabsTrigger>
+                        <TabsTrigger value="drafted">Brouillons</TabsTrigger>
+                        <TabsTrigger value="archived">Archivés</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="published">
+                        <CardContent>
+                            {coursesData.length > 0 ? (
+                                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                                    {coursesData.map((course) => (
+                                        <CourseLargeCard key={course.id} course={course} />
+                                    ))}
                                 </div>
-
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="outline" size="icon">
-                                            <Filter className="h-4 w-4" />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem>Tous</DropdownMenuItem>
-                                        <DropdownMenuItem>En cours</DropdownMenuItem>
-                                        <DropdownMenuItem>Planifiés</DropdownMenuItem>
-                                        <DropdownMenuItem>Terminés</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-
-                                <DropdownMenu>
-                                    <DropdownMenuTrigger asChild>
-                                        <Button variant="outline" size="icon">
-                                            <Grid3X3 className="h-4 w-4" />
-                                        </Button>
-                                    </DropdownMenuTrigger>
-                                    <DropdownMenuContent align="end">
-                                        <DropdownMenuItem>Vue liste</DropdownMenuItem>
-                                        <DropdownMenuItem>Vue grille</DropdownMenuItem>
-                                        <DropdownMenuItem>Vue calendrier</DropdownMenuItem>
-                                    </DropdownMenuContent>
-                                </DropdownMenu>
-                            </div>
-                        </div>
-                    </CardHeader>
-                </Card>
+                            ) : (
+                                <EmptyCoursesState />
+                            )}
+                        </CardContent>
+                    </TabsContent>
+                </Tabs>
             </AnimatedSection>
         </div>
     );

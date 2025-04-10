@@ -33,7 +33,6 @@ import {
   Users,
 } from "lucide-react";
 import DashboardOverview from "@/components/dashboard/DashboardOverview";
-import CourseManagement from "@/components/dashboard/CourseManagement";
 import UserManagement from "@/components/dashboard/UserManagement";
 import DashboardCalendar from "@/components/dashboard/DashboardCalendar";
 import DashboardAnalytics from "@/components/dashboard/DashboardAnalytics";
@@ -43,6 +42,7 @@ import LeadGeneration from "@/components/dashboard/LeadGeneration";
 import EmailCampaigns from "@/components/dashboard/EmailCampaigns";
 import CourseCreation from "@/components/dashboard/CourseCreation.tsx";
 import TrainingPath from "@/components/dashboard/TrainingPath.tsx";
+import CourseManagement2 from "@/components/dashboard/CourseManagement2.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -222,7 +222,7 @@ const Dashboard = () => {
           <div className="container mx-auto p-4 lg:p-6">
             <Routes>
               <Route path="/" element={<DashboardOverview />} />
-              <Route path="/courses" element={<CourseManagement />} />
+              <Route path="/courses" element={<CourseManagement2 />} />
               <Route path="/training-path" element={<TrainingPath />} />
               <Route path="/course-creation" element={<CourseCreation />} />
               <Route path="/users" element={<UserManagement />} />
