@@ -1,13 +1,11 @@
 import {useState} from "react";
-import {Link} from "react-router-dom";
-import {Button} from "@/components/ui/button";
-import {Plus} from "lucide-react";
 import AnimatedSection from "@/components/AnimatedSection";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
 import {EmptyParcoursState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
 import {CardContent} from "@/components/ui/card.tsx";
 import {coursesData} from "@/data/coursesData.ts";
-import {CourseLargeCard} from "@/components/dashboard/courses/CourseLargeCard.tsx";
+import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
+import {TrainingPathCreationDialog} from "@/components/dashboard/training-path/TrainingPathCreationDialog.tsx";
 
 const TrainingPath = () => {
     const [activeTab, setActiveTab] = useState("published");
@@ -31,12 +29,7 @@ const TrainingPath = () => {
                             <TabsTrigger value="drafted">Brouillons</TabsTrigger>
                             <TabsTrigger value="archived">Archivés</TabsTrigger>
                         </TabsList>
-                        <Button asChild className="justify-self-end">
-                            <Link to="/dashboard/course-creation">
-                                <Plus className="mr-2 h-4 w-4" />
-                                Nouveau
-                            </Link>
-                        </Button>
+                        <TrainingPathCreationDialog />
                     </div>
                     <TabsContent value="published">
                         <CardContent>
