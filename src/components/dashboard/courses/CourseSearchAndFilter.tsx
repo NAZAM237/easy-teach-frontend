@@ -1,7 +1,5 @@
 import {Input} from "@/components/ui/input";
-import {Button} from "@/components/ui/button";
-import {Filter, Search} from "lucide-react";
-import {DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger} from "@/components/ui/dropdown-menu";
+import {Search} from "lucide-react";
 
 interface CourseSearchAndFilterProps {
     searchTerm: string;
@@ -21,20 +19,6 @@ export const CourseSearchAndFilter = ({ searchTerm, onSearchChange }: CourseSear
                     onChange={(e) => onSearchChange(e.target.value)}
                 />
             </div>
-
-            <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                    <Button variant="outline" size="icon">
-                        <Filter className="h-4 w-4" />
-                    </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                    <DropdownMenuItem>Tous</DropdownMenuItem>
-                    <DropdownMenuItem>En cours</DropdownMenuItem>
-                    <DropdownMenuItem>Planifiés</DropdownMenuItem>
-                    <DropdownMenuItem>Terminés</DropdownMenuItem>
-                </DropdownMenuContent>
-            </DropdownMenu>
         </div>
     );
 };

@@ -20,9 +20,6 @@ export const TrainingPathCreationDialog = () => {
     const handleCreateTrainingPath = (e: React.FormEvent) => {
         e.preventDefault();
         navigate('/dashboard/course-creation');
-        /*toast.success("Formation créée avec succès", {
-            description: "Votre nouvelle formation a été ajoutée"
-        });*/
         setIsDialogOpen(false);
     };
 
@@ -30,8 +27,8 @@ export const TrainingPathCreationDialog = () => {
         <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
             <DialogTrigger asChild>
                 <Button>
-                    <Plus className="mr-2 h-4 w-4" />
-                    Nouveau
+                    <Plus className="h-4 w-4" />
+                    Créer
                 </Button>
             </DialogTrigger>
             <DialogContent className="sm:max-w-[680px]">

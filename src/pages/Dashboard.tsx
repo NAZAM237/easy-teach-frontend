@@ -41,8 +41,9 @@ import SalesPageGenerator from "@/components/dashboard/SalesPageGenerator";
 import LeadGeneration from "@/components/dashboard/LeadGeneration";
 import EmailCampaigns from "@/components/dashboard/EmailCampaigns";
 import CourseCreation from "@/components/dashboard/CourseCreation.tsx";
-import TrainingPath from "@/components/dashboard/TrainingPath.tsx";
-import CourseManagement2 from "@/components/dashboard/CourseManagement2.tsx";
+import TrainingPath from "@/components/dashboard/training-path/TrainingPath.tsx";
+import CourseManagement from "@/components/dashboard/CourseManagement.tsx";
+import CoursePackManagement from "@/components/dashboard/pack-course/CoursePackManagement.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -81,6 +82,15 @@ const Dashboard = () => {
                       <Link to="/dashboard/courses">
                         <BookOpen />
                         <span>Formations</span>
+                      </Link>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+
+                  <SidebarMenuItem>
+                    <SidebarMenuButton asChild isActive={location.pathname.includes("/dashboard/course-package")}>
+                      <Link to="/dashboard/course-package">
+                        <BookOpen />
+                        <span>Pack de cours</span>
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
@@ -222,8 +232,9 @@ const Dashboard = () => {
           <div className="container mx-auto p-4 lg:p-6">
             <Routes>
               <Route path="/" element={<DashboardOverview />} />
-              <Route path="/courses" element={<CourseManagement2 />} />
+              <Route path="/courses" element={<CourseManagement />} />
               <Route path="/training-path" element={<TrainingPath />} />
+              <Route path="/course-package" element={<CoursePackManagement />} />
               <Route path="/course-creation" element={<CourseCreation />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/calendar" element={<DashboardCalendar />} />

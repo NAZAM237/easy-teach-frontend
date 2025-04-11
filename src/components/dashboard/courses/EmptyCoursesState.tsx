@@ -20,7 +20,7 @@ const EmptyCoursesState = ({ onClearSearch }: EmptyCoursesStateProps) => {
     );
 };
 
-const EmptyParcoursState = () => {
+const EmptyTrainingPathState = () => {
     return (
         <div className="text-center py-10">
             <BookOpen className="mx-auto h-10 w-10 text-muted-foreground mb-4" />
@@ -29,4 +29,4 @@ const EmptyParcoursState = () => {
     )
 }
 
-export {EmptyCoursesState, EmptyParcoursState};
+export {EmptyCoursesState, EmptyTrainingPathState};

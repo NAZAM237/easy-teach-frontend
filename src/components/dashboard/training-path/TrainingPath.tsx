@@ -1,7 +1,7 @@
 import {useState} from "react";
-import AnimatedSection from "@/components/AnimatedSection";
+import AnimatedSection from "@/components/AnimatedSection.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {EmptyParcoursState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
+import {EmptyTrainingPathState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
 import {CardContent} from "@/components/ui/card.tsx";
 import {coursesData} from "@/data/coursesData.ts";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
@@ -40,18 +40,18 @@ const TrainingPath = () => {
                                     ))}
                                 </div>
                             ) : (
-                                <EmptyParcoursState />
+                                <EmptyTrainingPathState />
                             )}
                         </CardContent>
                     </TabsContent>
                     <TabsContent value="drafted">
                         <CardContent>
-                            <EmptyParcoursState />
+                            <EmptyTrainingPathState />
                         </CardContent>
                     </TabsContent>
                     <TabsContent value="archived">
                         <CardContent>
-                            <EmptyParcoursState />
+                            <EmptyTrainingPathState />
                         </CardContent>
                     </TabsContent>
                 </Tabs>
