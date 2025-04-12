@@ -1,0 +1,228 @@
+import {Button} from "@/components/ui/button.tsx";
+import {ImagePlus, Save, X} from "lucide-react";
+import React, {useState} from "react";
+import {Label} from "@/components/ui/label.tsx";
+import {Input} from "@/components/ui/input.tsx";
+import {Textarea} from "@/components/ui/textarea.tsx";
+import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
+import {toast} from "sonner";
+import {useNavigate} from "react-router-dom";
+
+const NewCourseCreation = () => {
+    const [title, setTitle] = useState("")
+    const [description, setDescription] = useState("")
+    const [duration, setDuration] = useState("")
+    const [category, setCategory] = useState("")
+    const [level, setLevel] = useState("")
+    const [courseCover, setCourseCover] = useState<string | null>(null);
+    const [isDragging, setIsDragging] = useState(false);
+    const [isHovering, setIsHovering] = useState(false);
+
+    const navigate = useNavigate();
+
+    const handleCreateCourse = (e: React.FormEvent) => {
+        e.preventDefault();
+        toast.success("Formation créée avec succès", {
+            description: "Votre nouvelle formation a été ajoutée"
+        });
+        setCourseCover(null);
+    };
+
+    const handleDragOver = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(true);
+    };
+
+    const handleDragLeave = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(false);
+    };
+
+    const handleDrop = (e: React.DragEvent) => {
+        e.preventDefault();
+        setIsDragging(false);
+
+        if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+            const file = e.dataTransfer.files[0];
+            if (file.type.startsWith('image/')) {
+                handleImageUpload(file);
+            } else {
+                toast.error("Format non supporté", {
+                    description: "Veuillez télécharger une image (JPG, PNG, etc.)"
+                });
+            }
+        }
+    };
+
+    const handleFileInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            handleImageUpload(e.target.files[0]);
+        }
+    };
+
+    const handleImageUpload = (file: File) => {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            if (e.target?.result) {
+                setCourseCover(e.target.result as string);
+                toast.success("Image téléchargée", {
+                    description: "L'image de couverture a été ajoutée"
+                });
+            }
+        };
+        reader.readAsDataURL(file);
+    };
+
+    const removeImage = () => {
+        setCourseCover(null);
+        toast.info("Image supprimée", {
+            description: "L'image de couverture a été retirée"
+        });
+    };
+
+    const handlePreviousPage = (e: React.FormEvent) => {
+        e.preventDefault();
+        navigate('/dashboard/courses');
+    }
+
+    return (
+        <div className="container mx-auto py-8 px-4 lg:w-4/5">
+            <div className="flex justify-center text-center mb-6">
+                <h1 className="text-3xl pb-6 font-bold">Nouvelle formation</h1>
+            </div>
+            <form onSubmit={handleCreateCourse}>
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <div className="pb-4">
+                            <Label htmlFor="title">Titre de la formation</Label>
+                            <Input
+                                id="title"
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                            />
+                        </div>
+                        <div className="pb-4">
+                            <Label htmlFor="description">Description</Label>
+                            <Textarea
+                                id="description"
+                                value={description}
+                                onChange={(e) => setDescription(e.target.value)}
+                                placeholder="Décrivez votre formation en quelques phrases..."
+                                className="min-h-[120px]"
+                                rows={4}
+                            />
+                        </div>
+                    </div>
+                    <div>
+                        <div className="pb-4">
+                            <Label htmlFor="duration">Durée</Label>
+                            <Input
+                                id="duration"
+                                value={duration}
+                                onChange={(e) => setDuration(e.target.value)}
+                            />
+                        </div>
+                        <div className="pb-4">
+                            <Label htmlFor="category">Catégorie</Label>
+                            <Select value={category} onValueChange={setCategory}>
+                                <SelectTrigger id="category">
+                                    <SelectValue placeholder="Sélectionner une catégorie" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="design">Design</SelectItem>
+                                    <SelectItem value="development">Développement</SelectItem>
+                                    <SelectItem value="marketing">Marketing</SelectItem>
+                                    <SelectItem value="business">Business</SelectItem>
+                                    <SelectItem value="photography">Photographie</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+
+                        <div className="pb-4">
+                            <Label htmlFor="level">Niveau</Label>
+                            <Select value={level} onValueChange={setLevel}>
+                                <SelectTrigger id="level">
+                                    <SelectValue placeholder="Sélectionner un niveau" />
+                                </SelectTrigger>
+                                <SelectContent>
+                                    <SelectItem value="beginner">Débutant</SelectItem>
+                                    <SelectItem value="intermediate">Intermédiaire</SelectItem>
+                                    <SelectItem value="advanced">Avancé</SelectItem>
+                                    <SelectItem value="expert">Expert</SelectItem>
+                                </SelectContent>
+                            </Select>
+                        </div>
+                    </div>
+                </div>
+                <div className="grid grid-cols-1 items-center pb-4">
+                    {/* Upload Section */}
+                    <label htmlFor="training-pack-image">Image de couverture</label>
+                    <label
+                        htmlFor="file-upload"
+                        className={`relative flex flex-col items-center justify-center p-6 border-2 border-dashed rounded-md transition-all duration-200 cursor-pointer ${
+                            isDragging
+                                ? "border-primary bg-primary/5"
+                                : isHovering
+                                    ? "border-primary/30 bg-primary/5"
+                                    : "border-gray-300 hover:border-primary/20 hover:bg-gray-50"
+                        } ${
+                            courseCover ? "h-64" : "h-80"
+                        }`}
+                        onDragOver={handleDragOver}
+                        onDragLeave={handleDragLeave}
+                        onDrop={handleDrop}
+                        onMouseEnter={() => setIsHovering(true)}
+                        onMouseLeave={() => setIsHovering(false)}
+                    >
+                        {courseCover ? (
+                            <div className="relative w-full h-full">
+                                <img
+                                    src={courseCover}
+                                    alt="Couverture du cours"
+                                    className="w-full h-full object-cover rounded-md"
+                                />
+                                <button
+                                    type="button"
+                                    onClick={removeImage}
+                                    className="absolute top-2 right-2 bg-black/50 hover:bg-black/70 text-white p-1 rounded-full transition-colors"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </div>
+                        ) : (
+                            <div className="flex flex-col items-center gap-3 text-center">
+                                <div className={`p-3 rounded-full bg-primary/5 ${isHovering ? 'scale-105' : ''} transition-transform duration-300`}>
+                                    <ImagePlus className={`h-10 w-10 ${isHovering ? 'text-primary' : 'text-primary/70'} transition-colors duration-300`} />
+                                </div>
+                                <div className="space-y-1">
+                                    <p className="text-sm font-medium">Glissez ou cliquez pour ajouter une image</p>
+                                    <p className="text-xs text-muted-foreground">JPG, PNG ou GIF (max 5MB)</p>
+                                </div>
+                                <input
+                                    id="file-upload"
+                                    name="file-upload"
+                                    type="file"
+                                    accept="image/*"
+                                    className="sr-only"
+                                    onChange={handleFileInputChange}
+                                />
+                            </div>
+                        )}
+                    </label>
+                </div>
+                <div className="flex flex-row items-center justify-between">
+                    <Button variant="secondary" type="button" onClick={handlePreviousPage}>
+                        <Save className="h-4 w-4" />
+                        Retour
+                    </Button>
+                    <Button type="submit">
+                        <Save className="h-4 w-4" />
+                        Enregistrer
+                    </Button>
+                </div>
+            </form>
+        </div>
+    );
+};
+
+export default NewCourseCreation;

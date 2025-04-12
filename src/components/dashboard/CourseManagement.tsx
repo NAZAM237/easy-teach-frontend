@@ -5,12 +5,13 @@ import {coursesData} from "@/data/coursesData";
 import {EmptyCoursesState} from "@/components/dashboard/courses/EmptyCoursesState";
 import {CourseSearchAndFilter} from "@/components/dashboard/courses/CourseSearchAndFilter";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {TrainingPathCreationDialog} from "@/components/dashboard/training-path/TrainingPathCreationDialog.tsx";
+import {CreationDialog} from "@/components/dashboard/training-path/CreationDialog.tsx";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
 
 const CourseManagement = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeTab, setActiveTab] = useState("published");
+    const [currentComponent] = useState<string>("course-management");
 
     const filteredCourses = coursesData.filter(course =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -42,7 +43,7 @@ const CourseManagement = () => {
                                 searchTerm={searchTerm}
                                 onSearchChange={setSearchTerm}
                             />
-                            <TrainingPathCreationDialog />
+                            <CreationDialog currentComponent={currentComponent}/>
                         </div>
                     </div>
                     <TabsContent value="published">

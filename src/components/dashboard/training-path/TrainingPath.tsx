@@ -5,10 +5,11 @@ import {EmptyTrainingPathState} from "@/components/dashboard/courses/EmptyCourse
 import {CardContent} from "@/components/ui/card.tsx";
 import {coursesData} from "@/data/coursesData.ts";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
-import {TrainingPathCreationDialog} from "@/components/dashboard/training-path/TrainingPathCreationDialog.tsx";
+import {CreationDialog} from "@/components/dashboard/training-path/CreationDialog.tsx";
 
 const TrainingPath = () => {
     const [activeTab, setActiveTab] = useState("published");
+    const [currentComponent] = useState<string>("training-path");
 
     return (
         <div className="space-y-6 flex flex-col justify-center items-center">
@@ -29,7 +30,7 @@ const TrainingPath = () => {
                             <TabsTrigger value="drafted">Brouillons</TabsTrigger>
                             <TabsTrigger value="archived">Archivés</TabsTrigger>
                         </TabsList>
-                        <TrainingPathCreationDialog />
+                        <CreationDialog currentComponent={currentComponent} setCurrentComponent={() => setCurrentComponent(null)}/>
                     </div>
                     <TabsContent value="published">
                         <CardContent>

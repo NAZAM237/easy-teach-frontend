@@ -10,16 +10,18 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog";
 import {Plus} from "lucide-react";
-import {useState} from "react";
+import {memo, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-export const TrainingPathCreationDialog = () => {
+export const CreationDialog = memo(({currentComponent, setCurrentComponent}) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const navigate = useNavigate();
-
+    console.log(currentComponent);
+    console.log(setCurrentComponent);
     const handleCreateTrainingPath = (e: React.FormEvent) => {
         e.preventDefault();
-        navigate('/dashboard/course-creation');
+        if (currentComponent && currentComponent === "training-path") navigate('/dashboard/course-creation');
+        if (currentComponent && currentComponent === "course-management") navigate('/dashboard/new-course');
         setIsDialogOpen(false);
     };
 
@@ -58,4 +60,4 @@ export const TrainingPathCreationDialog = () => {
             </DialogContent>
         </Dialog>
     );
-};
+});

@@ -9,10 +9,7 @@ const EmptyCoursesState = ({ onClearSearch }: EmptyCoursesStateProps) => {
     return (
         <div className="text-center py-10">
             <BookOpen className="mx-auto h-10 w-10 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium mb-2">Aucun parcours trouvé</h3>
-            <p className="text-muted-foreground mb-4">
-                Aucun parcours de formation ne correspond à votre recherche.
-            </p>
+            <h3 className="text-lg font-medium text-muted-foreground mb-4">Aucun parcours trouvé</h3>
             <Button variant="outline" onClick={onClearSearch}>
                 Effacer la recherche
             </Button>
@@ -24,7 +21,7 @@ const EmptyTrainingPathState = () => {
     return (
         <div className="text-center py-10">
             <BookOpen className="mx-auto h-10 w-10 text-muted-foreground mb-4" />
-            <h3 className="text-lg font-medium mb-2">Il n'y a rien ici pour le moment</h3>
+            <h3 className="text-lg font-medium text-muted-foreground">Il n'y a rien ici pour le moment</h3>
         </div>
     )
 }

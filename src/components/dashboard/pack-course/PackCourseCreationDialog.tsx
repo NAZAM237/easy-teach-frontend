@@ -179,7 +179,7 @@ export const PackCourseCreationDialog = () => {
                         <Button type="button" variant="outline" onClick={() => setIsDialogOpen(false)}>
                             Annuler
                         </Button>
-                        <Button type="submit">Créer la formation</Button>
+                        <Button type="submit">Créer</Button>
                     </DialogFooter>
                 </form>
             </DialogContent>
