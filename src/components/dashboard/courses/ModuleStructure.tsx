@@ -1,13 +1,11 @@
 import {Label} from "@/components/ui/label.tsx";
 import {Input} from "@/components/ui/input.tsx";
 import {Textarea} from "@/components/ui/textarea.tsx";
-import {Select, SelectContent, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select.tsx";
 import {BookOpenCheck, Clock, FileText, ImagePlus, MoreVertical, Pencil, Trash2, X} from "lucide-react";
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card.tsx";
 import React, {useState} from "react";
 import {toast} from "sonner";
 import {nanoid} from "nanoid";
-import AddCourseModuleDialog from "@/components/dashboard/courses/AddCourseModuleDialog.tsx";
 import {Separator} from "@/components/ui/separator.tsx";
 import {
     DropdownMenu,
@@ -16,69 +14,45 @@ import {
     DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {useForm} from "react-hook-form";
-import {zodResolver} from "@hookform/resolvers/zod";
-import {z} from "zod";
-import {useNavigate} from "react-router-dom";
+import AddModuleLessonDialog from "@/components/dashboard/courses/AddModuleLessonDialog.tsx";
 
-type Module = {
+type Lesson = {
     id: string;
     title: string,
-    description: string,
+    content: string,
     position: number
 }
 
-const sampleModules: Module[] = [
+const sampleLessons: Lesson[] = [
     {
         id: nanoid(8),
-        title: "Introduction au management",
-        description: "Le module 'Introduction au management' vous fournit les bases essentielles pour comprendre et appliquer les principes fondamentaux du management et les différents styles de leadership dans votre organisation.",
+        title: "Communication verbale",
+        content: "Techniques de communication verbale efficace...",
         position: 1
     },
     {
         id: nanoid(8),
-        title: "Communication efficace",
-        description: "Dans ce module 'Communication efficace', vous découvrirez comment améliorer vos compétences en communication verbale et non-verbale pour transmettre efficacement vos idées et collaborer avec votre équipe.",
+        title: "Communication non-verbale",
+        content: "Impact et importance de la communication non-verbale...",
         position: 2
     },
     {
         id: nanoid(8),
-        title: "Gestion de projet",
-        description: "Le module 'Gestion de projet' vous forme aux méthodologies et outils de gestion de projet les plus utilisés pour mener à bien vos projets dans les délais et le budget impartis.",
+        title: "Méthodologies de gestion de projet",
+        content: "Présentation des différentes méthodologies de gestion de projet...",
         position: 3
     }
 ];
 
-const moduleSchema = z.object({
-    title: z.string().min(3, "Le titre doit contenir au moins 3 caractères"),
-    description: z.string(),
-    position: z.number().min(0),
-});
 
-type ModuleFormValues = z.infer<typeof moduleSchema>;
-
-const CourseStructure = () => {
+const ModuleStructure = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [position, setPosition] = useState(1)
-    const [level, setLevel] = useState("")
+    const [position, setPosition] = useState("")
     const [courseCover, setCourseCover] = useState<string | null>(null);
     const [isDragging, setIsDragging] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
-    const [modules, setModules] = useState<Module[]>(sampleModules);
-    const [editingModule, setEditingModule] = useState<Module | null>(null);
-    const [isDialogOpen, setIsDialogOpen] = useState(false);
-
-    const navigate = useNavigate();
-
-    const form = useForm<ModuleFormValues>({
-        resolver: zodResolver(moduleSchema),
-        defaultValues: {
-            title: "",
-            description: "",
-            position: 0
-        },
-    });
+    const [lessons, setLessons] = useState<Lesson[]>(sampleLessons);
 
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
@@ -132,20 +106,9 @@ const CourseStructure = () => {
         });
     };
 
-    const handleOpenDialog = (module?: Module) => {
-        if (module) {
-            setEditingModule(module);
-            form.reset({ title: module.title, description: module.description, position: module.position });
-        } else {
-            setEditingModule(null);
-            form.reset({ title: "", description: "", position: 0 });
-        }
-        setIsDialogOpen(true);
-    };
-
-    const handleDeleteModule = (id: string) => {
+    const handleDeleteLesson = (id: string) => {
         if (confirm("Êtes-vous sûr de vouloir supprimer ce module ?")) {
-            setModules(modules.filter(module => module.id !== id));
+            setLessons(lessons.filter(lesson => lesson.id !== id));
             toast.success("Module supprimé avec succès");
         }
     };
@@ -157,16 +120,19 @@ const CourseStructure = () => {
         return text.slice(0, maxLength).trim() + "...";
     };
 
-    function goToModuleStructure(id: string) {
+    function handleShow(id: string) {
         console.log(id);
-        navigate("/dashboard/module-structure");
+    }
+
+    function handleEditDialog(lesson: Lesson) {
+        console.log(lesson);
     }
 
     return (
         <Card>
             <div className="container mx-auto py-8 w-4/5 px-4">
                 <div className="flex mb-6">
-                    <h1 className="text-3xl pb-6 font-bold">Formation XXXXXXX...</h1>
+                    <h1 className="text-3xl pb-6 font-bold">Module XXXXXXX...</h1>
                 </div>
                 <form>
                     <div className="grid grid-cols-2 space-x-4">
@@ -227,56 +193,15 @@ const CourseStructure = () => {
                                     )}
                                 </label>
                             </div>
-                            <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 pb-6">
-                                <div className="pb-4">
-                                    <Label htmlFor="category" className="text-muted-foreground">Catégorie</Label>
-                                    <Select value={position} onValueChange={setPosition}>
-                                        <SelectTrigger id="category" className="h-12 rounded-none">
-                                            <SelectValue placeholder="Sélectionner une catégorie" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="design">Design</SelectItem>
-                                            <SelectItem value="development">Développement</SelectItem>
-                                            <SelectItem value="marketing">Marketing</SelectItem>
-                                            <SelectItem value="business">Business</SelectItem>
-                                            <SelectItem value="photography">Photographie</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-
-                                <div className="pb-4">
-                                    <Label htmlFor="level" className="text-muted-foreground">Niveau</Label>
-                                    <Select value={level} onValueChange={setLevel}>
-                                        <SelectTrigger id="level" className="h-12 rounded-none">
-                                            <SelectValue placeholder="Sélectionner un niveau" />
-                                        </SelectTrigger>
-                                        <SelectContent>
-                                            <SelectItem value="beginner">Débutant</SelectItem>
-                                            <SelectItem value="intermediate">Intermédiaire</SelectItem>
-                                            <SelectItem value="advanced">Avancé</SelectItem>
-                                            <SelectItem value="expert">Expert</SelectItem>
-                                        </SelectContent>
-                                    </Select>
-                                </div>
-                            </div>
                         </div>
                         <div>
                             <div className="pb-4">
-                                <Label htmlFor="title" className="text-muted-foreground">Titre de la formation</Label>
+                                <Label htmlFor="title" className="text-muted-foreground">Titre du module</Label>
                                 <Input
                                     id="title"
                                     value={title}
                                     onChange={(e) => setTitle(e.target.value)}
-                                    className="h-12"
-                                />
-                            </div>
-                            <div className="pb-4">
-                                <Label htmlFor="title" className="text-muted-foreground">Sous-titre</Label>
-                                <Input
-                                    id="title"
-                                    value={title}
-                                    onChange={(e) => setTitle(e.target.value)}
-                                    className="h-12"
+                                    className="h-11"
                                 />
                             </div>
                             <div className="pb-4">
@@ -286,19 +211,28 @@ const CourseStructure = () => {
                                     value={description}
                                     onChange={(e) => setDescription(e.target.value)}
                                     placeholder="Décrivez votre formation en quelques phrases..."
-                                    className="min-h-[231px]"
+                                    className="min-h-[145px]"
                                     rows={4}
+                                />
+                            </div>
+                            <div className="pb-4">
+                                <Label htmlFor="position" className="text-muted-foreground">Position</Label>
+                                <Input
+                                    id="position"
+                                    value={position}
+                                    onChange={(e) => setPosition(e.target.value)}
+                                    className="h-11"
                                 />
                             </div>
                         </div>
                     </div>
                     <Separator />
                     <div className="flex flex-row items-center mt-6">
-                        <AddCourseModuleDialog />
+                        <AddModuleLessonDialog />
                     </div>
                     {
-                        modules.length > 0 && modules.map(module =>
-                           <Card key={module.id} className="grid grid-cols-3 mb-4 mt-4 w-4/5 transition-all hover:shadow-md hover:border-primary/40 cursor-pointer" onClick={() => goToModuleStructure(module.id)}>
+                        lessons.length > 0 && lessons.map(lesson =>
+                           <Card key={lesson.id} className="grid grid-cols-3 mb-4 mt-4 w-4/5 transition-all hover:shadow-md hover:border-primary/40 cursor-pointer">
                                 <div className="p-4">
                                     <div className="w-full h-full rounded-lg bg-blue-400"></div>
                                 </div>
@@ -306,7 +240,7 @@ const CourseStructure = () => {
                                     <CardHeader className="pb-0 pt-4 pl-4 pr-4">
                                         <div className="flex justify-between items-start">
                                             <div>
-                                                <CardTitle className="text-lg leading-tight hover:text-blue-600">{module.position}. {module.title}</CardTitle>
+                                                <CardTitle className="text-lg leading-tight hover:text-blue-600">{lesson.position}. {lesson.title}</CardTitle>
                                             </div>
                                             <DropdownMenu>
                                                 <DropdownMenuTrigger asChild>
@@ -315,15 +249,15 @@ const CourseStructure = () => {
                                                     </Button>
                                                 </DropdownMenuTrigger>
                                                 <DropdownMenuContent align="end">
-                                                    <DropdownMenuItem onClick={() => goToModuleStructure(module.id)}>
+                                                    <DropdownMenuItem onClick={() => handleShow(lesson.id)}>
                                                         <FileText className="mr-2 h-4 w-4" />
                                                         Contenu
                                                     </DropdownMenuItem>
-                                                    <DropdownMenuItem onClick={() => handleOpenDialog(module)}>
+                                                    <DropdownMenuItem onClick={() => handleEditDialog(lesson)}>
                                                         <Pencil className="mr-2 h-4 w-4" />
                                                         Modifier
                                                     </DropdownMenuItem>
-                                                    <DropdownMenuItem onClick={() => handleDeleteModule(module.id)}>
+                                                    <DropdownMenuItem onClick={() => handleDeleteLesson(lesson.id)}>
                                                         <Trash2 className="mr-2 h-4 w-4" />
                                                         Supprimer
                                                     </DropdownMenuItem>
@@ -334,7 +268,7 @@ const CourseStructure = () => {
                                     <CardContent className="p-4 pt-0">
                                         <div className="max-h-24 mb-3">
                                             <p className="text-sm text-muted-foreground">
-                                                {truncateText(module.description, 150)}
+                                                {truncateText(lesson.content, 150)}
                                             </p>
                                         </div>
                                         <div className="flex flex-wrap gap-2 mb-3">
@@ -352,8 +286,8 @@ const CourseStructure = () => {
                             </Card>
                         )
                     }
-                    {modules.length === 0 && (
-                        <p className="text-slate-100">Aucun module à afficher...</p>
+                    {lessons.length === 0 && (
+                        <p className="text-slate-100">Aucune leçon à afficher...</p>
                     )}
                 </form>
             </div>
@@ -361,4 +295,4 @@ const CourseStructure = () => {
     )
 }
 
-export default CourseStructure
+export default ModuleStructure

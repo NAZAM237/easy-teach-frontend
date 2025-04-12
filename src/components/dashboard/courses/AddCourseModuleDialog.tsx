@@ -19,15 +19,6 @@ const AddCourseModuleDialog = () => {
     const [isDragging, setIsDragging] = useState(false);
     const [isHovering, setIsHovering] = useState(false);
 
-    const handleCreateCourse = (e: React.FormEvent) => {
-        e.preventDefault();
-        toast.success("Formation créée avec succès", {
-            description: "Votre nouvelle formation a été ajoutée"
-        });
-        setIsDialogOpen(false);
-        setCourseCover(null);
-    };
-
     const handleDragOver = (e: React.DragEvent) => {
         e.preventDefault();
         setIsDragging(true);
@@ -92,7 +83,7 @@ const AddCourseModuleDialog = () => {
                 <DialogHeader>
                     <DialogTitle>Nouveau module</DialogTitle>
                 </DialogHeader>
-                <form onSubmit={handleCreateCourse}>
+                <form>
                     <div className="grid gap-4 py-4">
                         <div className="grid grid-cols-1 items-center pb-3">
                             <label htmlFor="title" className="text-muted-foreground text-sm">Titre</label>
