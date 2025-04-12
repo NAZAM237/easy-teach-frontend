@@ -45,6 +45,7 @@ import TrainingPath from "@/components/dashboard/training-path/TrainingPath.tsx"
 import CourseManagement from "@/components/dashboard/CourseManagement.tsx";
 import CoursePackManagement from "@/components/dashboard/pack-course/CoursePackManagement.tsx";
 import NewCourseCreation from "@/components/dashboard/courses/NewCourseCreation.tsx";
+import CourseStructure from "@/components/dashboard/courses/CourseStructure.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -238,6 +239,7 @@ const Dashboard = () => {
               <Route path="/course-package" element={<CoursePackManagement />} />
               <Route path="/course-creation" element={<CourseCreation />} />
               <Route path="/new-course" element={<NewCourseCreation />} />
+              <Route path="/course-structure" element={<CourseStructure />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/calendar" element={<DashboardCalendar />} />
               <Route path="/analytics" element={<DashboardAnalytics />} />
