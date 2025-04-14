@@ -12,26 +12,7 @@ import {Plus} from "lucide-react";
 import AddLessonDialog from "@/components/dashboard/courses/module-structure/AddLessonDialog.tsx";
 import {Lesson} from "@/types/course.ts";
 
-const sampleLessons: Lesson[] = [
-    {
-        id: nanoid(8),
-        title: "Communication verbale",
-        content: "Techniques de communication verbale efficace...",
-        position: "1"
-    },
-    {
-        id: nanoid(8),
-        title: "Communication non-verbale",
-        content: "Impact et importance de la communication non-verbale...",
-        position: "2"
-    },
-    {
-        id: nanoid(8),
-        title: "Méthodologies de gestion de projet",
-        content: "Présentation des différentes méthodologies de gestion de projet...",
-        position: "3"
-    }
-];
+const sampleLessons: Lesson[] = [];
 
 const ModuleStructure = () => {
     const [title, setTitle] = useState("")

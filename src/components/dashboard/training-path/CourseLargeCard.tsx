@@ -12,7 +12,7 @@ import {toast} from "sonner";
 
 interface CourseCardProps {
     course: {
-        id: number;
+        id: string;
         title: string;
         category: string;
         duration: string;
@@ -26,16 +26,17 @@ interface CourseCardProps {
         image: string;
         level: string;
     };
+    goToCourseStructure: (courseId: string) => void;
 }
 
-export const CourseLargeCard = ({ course }: CourseCardProps) => {
-    const handleEdit = (id: number) => {
+export const CourseLargeCard = ({ course, goToCourseStructure }: CourseCardProps) => {
+    const handleEdit = (id: string) => {
         toast.info("Cette fonctionnalité sera disponible prochainement", {
             description: "L'édition n'est pas implémentée dans cette démo" +id
         });
     };
 
-    const handleDelete = (id: number) => {
+    const handleDelete = (id: string) => {
         toast.info("Cette fonctionnalité sera disponible prochainement", {
             description: "La suppression n'est pas implémentée dans cette démo" +id
         });
@@ -69,6 +70,7 @@ export const CourseLargeCard = ({ course }: CourseCardProps) => {
 
     return (
         <Card
+            onClick={() => goToCourseStructure(course.id)}
             key={course.id}
             className="grid grid-cols-2 overflow-hidden transition-all hover:shadow-md hover:scale-[1.02] hover:border-primary/40 cursor-pointer"
         >

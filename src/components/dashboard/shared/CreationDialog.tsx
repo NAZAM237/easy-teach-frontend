@@ -1,5 +1,5 @@
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
+import {Button} from "@/components/ui/button.tsx";
+import {Input} from "@/components/ui/input.tsx";
 import {
     Dialog,
     DialogContent,
@@ -8,16 +8,19 @@ import {
     DialogHeader,
     DialogTitle,
     DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/components/ui/dialog.tsx";
 import {Plus} from "lucide-react";
 import {memo, useState} from "react";
 import {useNavigate} from "react-router-dom";
 
-export const CreationDialog = memo(({currentComponent, setCurrentComponent}) => {
+interface CreationDialogProps {
+    currentComponent: string
+}
+
+export const CreationDialog = memo(({currentComponent}: CreationDialogProps) => {
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const navigate = useNavigate();
     console.log(currentComponent);
-    console.log(setCurrentComponent);
     const handleCreateTrainingPath = (e: React.FormEvent) => {
         e.preventDefault();
         if (currentComponent && currentComponent === "training-path") navigate('/dashboard/course-creation');

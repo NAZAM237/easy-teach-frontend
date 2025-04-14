@@ -5,19 +5,27 @@ import {coursesData} from "@/data/coursesData.ts";
 import {EmptyCoursesState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
 import {CourseSearchAndFilter} from "@/components/dashboard/courses/CourseSearchAndFilter.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
-import {CreationDialog} from "@/components/dashboard/training-path/CreationDialog.tsx";
+import {CreationDialog} from "@/components/dashboard/shared/CreationDialog.tsx";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
+import {useNavigate} from "react-router-dom";
 
 const CourseManagement = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [activeTab, setActiveTab] = useState("published");
     const [currentComponent] = useState<string>("course-management");
 
+    const navigate = useNavigate();
+
     const filteredCourses = coursesData.filter(course =>
         course.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
         course.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
         course.instructor.toLowerCase().includes(searchTerm.toLowerCase())
     );
+
+    function goToCourseStructure(id: string) {
+        console.log(id);
+        navigate("/dashboard/course-structure");
+    }
 
     return (
         <div className="space-y-6 flex flex-col justify-center items-center">
@@ -51,7 +59,7 @@ const CourseManagement = () => {
                             {filteredCourses.length > 0 ? (
                                 <div className="grid grid-cols-1 gap-6">
                                     {filteredCourses.map((course) => (
-                                        <CourseLargeCard key={course.id} course={course} />
+                                        <CourseLargeCard key={course.id} course={course} goToCourseStructure={() => goToCourseStructure(course.id)}/>
                                     ))}
                                 </div>
                             ) : (

@@ -1,6 +1,8 @@
+import {nanoid} from "nanoid";
+
 export const coursesData = [
     {
-        id: 1,
+        id: nanoid(8),
         title: 'Introduction au management',
         category: 'Management',
         duration: '16h',
@@ -15,7 +17,7 @@ export const coursesData = [
         level: 'Débutant'
     },
     {
-        id: 2,
+        id: nanoid(8),
         title: 'Excel avancé',
         category: 'Bureautique',
         duration: '8h',
@@ -30,7 +32,7 @@ export const coursesData = [
         level: 'Intermédiaire'
     },
     {
-        id: 3,
+        id: nanoid(8),
         title: 'Communication professionnelle',
         category: 'Soft Skills',
         duration: '24h',
@@ -45,7 +47,7 @@ export const coursesData = [
         level: 'Tous niveaux'
     },
     {
-        id: 4,
+        id: nanoid(8),
         title: 'Gestion de projet',
         category: 'Management',
         duration: '40h',
@@ -60,7 +62,7 @@ export const coursesData = [
         level: 'Avancé'
     },
     {
-        id: 5,
+        id: nanoid(8),
         title: 'Marketing digital',
         category: 'Marketing',
         duration: '32h',

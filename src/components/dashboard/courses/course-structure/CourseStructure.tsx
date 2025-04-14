@@ -13,26 +13,7 @@ import UploadCoverImageBloc from "@/components/dashboard/shared/UploadCoverImage
 import ModuleList from "@/components/dashboard/courses/course-structure/ModuleList.tsx";
 import {Module} from "@/types/course.ts";
 
-const sampleModules: Module[] = [
-    {
-        id: nanoid(8),
-        title: "Introduction au management",
-        description: "Le module 'Introduction au management' vous fournit les bases essentielles pour comprendre et appliquer les principes fondamentaux du management et les différents styles de leadership dans votre organisation.",
-        position: "1"
-    },
-    {
-        id: nanoid(8),
-        title: "Communication efficace",
-        description: "Dans ce module 'Communication efficace', vous découvrirez comment améliorer vos compétences en communication verbale et non-verbale pour transmettre efficacement vos idées et collaborer avec votre équipe.",
-        position: "2"
-    },
-    {
-        id: nanoid(8),
-        title: "Gestion de projet",
-        description: "Le module 'Gestion de projet' vous forme aux méthodologies et outils de gestion de projet les plus utilisés pour mener à bien vos projets dans les délais et le budget impartis.",
-        position: "3"
-    }
-];
+const sampleModules: Module[] = [];
 
 const CourseStructure = () => {
     const [title, setTitle] = useState("")

@@ -142,7 +142,7 @@ const NewCourseCreation = () => {
 
                         <div className="pb-4">
                             <Label htmlFor="level" className="text-muted-foreground">Niveau</Label>
-                            <Select value={level} onValueChange={setLevel} className="h-12">
+                            <Select value={level} onValueChange={setLevel}>
                                 <SelectTrigger id="level" className="h-12 rounded-none">
                                     <SelectValue placeholder="Sélectionner un niveau" />
                                 </SelectTrigger>

@@ -1,6 +1,6 @@
 import {Dialog, DialogContent, DialogFooter, DialogHeader, DialogTitle} from "@/components/ui/dialog.tsx";
 import {Button} from "@/components/ui/button.tsx";
-import {Mail} from "lucide-react";
+import {FileArchive, FileAudio, FileText, FileVideo} from "lucide-react";
 import {Input} from "@/components/ui/input.tsx";
 import {useEffect} from "react";
 import {Label} from "@/components/ui/label.tsx";
@@ -13,10 +13,10 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import {Form, FormControl, FormField, FormItem, FormLabel, FormMessage} from "@/components/ui/form.tsx";
 
 const templates = [
-    { id: nanoid(5), name: "Bienvenue", description: "Email de bienvenue pour les nouveaux inscrits" },
-    { id: nanoid(5), name: "Promotion", description: "Annonce d'une offre promotionnelle" },
-    { id: nanoid(5), name: "Rappel événement", description: "Rappel avant un événement planifié" },
-    { id: nanoid(5), name: "Suivi formation", description: "Suivi après une formation" },
+    { id: nanoid(5), name: "Video", description: "Rajouter une vidéo à votre leçon", icon: FileVideo },
+    { id: nanoid(5), name: "Audio", description: "Ajouter de l'audio à votre leçon", icon: FileAudio },
+    { id: nanoid(5), name: "Document", description: "Ajouter un document à votre leçon", icon: FileArchive },
+    { id: nanoid(5), name: "Plain text", description: "Créer un cours textuel", icon: FileText },
 ];
 
 const lessonSchema = z.object({
@@ -126,7 +126,7 @@ const AddLessonDialog = ({
                                                                         className="border rounded-lg p-4 cursor-pointer hover:border-primary transition-all flex items-center gap-3 peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5"
                                                                     >
                                                                         <div className="w-10 h-10 bg-primary/10 rounded-full flex items-center justify-center">
-                                                                            <Mail className="w-5 h-5 text-primary" />
+                                                                            <template.icon className="w-5 h-5 text-primary" />
                                                                         </div>
                                                                         <div>
                                                                             <p className="font-medium">{template.name}</p>

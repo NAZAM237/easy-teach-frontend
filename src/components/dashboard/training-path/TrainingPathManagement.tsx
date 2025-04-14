@@ -5,9 +5,9 @@ import {EmptyTrainingPathState} from "@/components/dashboard/courses/EmptyCourse
 import {CardContent} from "@/components/ui/card.tsx";
 import {coursesData} from "@/data/coursesData.ts";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";
-import {CreationDialog} from "@/components/dashboard/training-path/CreationDialog.tsx";
+import {CreationDialog} from "@/components/dashboard/shared/CreationDialog.tsx";
 
-const TrainingPath = () => {
+const TrainingPathManagement = () => {
     const [activeTab, setActiveTab] = useState("published");
     const [currentComponent] = useState<string>("training-path");
 
@@ -61,4 +61,4 @@ const TrainingPath = () => {
     );
 };
 
-export default TrainingPath;
+export default TrainingPathManagement;
