@@ -2,13 +2,15 @@
 export interface Module {
   id: string;
   title: string;
-  lessons: Lesson[];
+  description: string;
+  position: string;
 }
 
 export interface Lesson {
   id: string;
   title: string;
   content: string;
+  position: string
 }
 
 export interface Course {

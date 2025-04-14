@@ -1,9 +1,9 @@
 import {useState} from "react";
-import {CardContent} from "@/components/ui/card";
-import AnimatedSection from "@/components/AnimatedSection";
-import {coursesData} from "@/data/coursesData";
-import {EmptyCoursesState} from "@/components/dashboard/courses/EmptyCoursesState";
-import {CourseSearchAndFilter} from "@/components/dashboard/courses/CourseSearchAndFilter";
+import {CardContent} from "@/components/ui/card.tsx";
+import AnimatedSection from "@/components/AnimatedSection.tsx";
+import {coursesData} from "@/data/coursesData.ts";
+import {EmptyCoursesState} from "@/components/dashboard/courses/EmptyCoursesState.tsx";
+import {CourseSearchAndFilter} from "@/components/dashboard/courses/CourseSearchAndFilter.tsx";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs.tsx";
 import {CreationDialog} from "@/components/dashboard/training-path/CreationDialog.tsx";
 import {CourseLargeCard} from "@/components/dashboard/training-path/CourseLargeCard.tsx";

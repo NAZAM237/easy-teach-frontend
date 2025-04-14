@@ -42,11 +42,11 @@ import LeadGeneration from "@/components/dashboard/LeadGeneration";
 import EmailCampaigns from "@/components/dashboard/EmailCampaigns";
 import CourseCreation from "@/components/dashboard/CourseCreation.tsx";
 import TrainingPath from "@/components/dashboard/training-path/TrainingPath.tsx";
-import CourseManagement from "@/components/dashboard/CourseManagement.tsx";
+import CourseManagement from "@/components/dashboard/courses/CourseManagement.tsx";
 import CoursePackManagement from "@/components/dashboard/pack-course/CoursePackManagement.tsx";
 import NewCourseCreation from "@/components/dashboard/courses/NewCourseCreation.tsx";
-import CourseStructure from "@/components/dashboard/courses/CourseStructure.tsx";
-import ModuleStructure from "@/components/dashboard/courses/ModuleStructure.tsx";
+import CourseStructure from "@/components/dashboard/courses/course-structure/CourseStructure.tsx";
+import ModuleStructure from "@/components/dashboard/courses/module-structure/ModuleStructure.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
