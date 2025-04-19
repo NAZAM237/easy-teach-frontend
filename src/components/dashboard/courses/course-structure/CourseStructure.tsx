@@ -18,7 +18,7 @@ const sampleModules: Module[] = [];
 const CourseStructure = () => {
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [position, setPosition] = useState("")
+    const [position, setposition] = useState("")
     const [level, setLevel] = useState("")
 
     const [modules, setModules] = useState<Module[]>(sampleModules);
@@ -78,7 +78,7 @@ const CourseStructure = () => {
                                 <div className="grid grid-cols-1 lg:grid-cols-2 space-x-4 pb-6">
                                     <div className="pb-4">
                                         <Label htmlFor="category" className="text-muted-foreground">Catégorie</Label>
-                                        <Select value={position} onValueChange={setPosition}>
+                                        <Select value={position} onValueChange={setposition}>
                                             <SelectTrigger id="category" className="h-12 rounded-none">
                                                 <SelectValue placeholder="Sélectionner une catégorie" />
                                             </SelectTrigger>

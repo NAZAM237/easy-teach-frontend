@@ -40,13 +40,13 @@ import DashboardSettings from "@/components/dashboard/DashboardSettings";
 import SalesPageGenerator from "@/components/dashboard/SalesPageGenerator";
 import LeadGeneration from "@/components/dashboard/LeadGeneration";
 import EmailCampaigns from "@/components/dashboard/EmailCampaigns";
-import CourseCreation from "@/components/dashboard/CourseCreation.tsx";
 import TrainingPathManagement from "@/components/dashboard/training-path/TrainingPathManagement.tsx";
 import CourseManagement from "@/components/dashboard/courses/CourseManagement.tsx";
 import CoursePackManagement from "@/components/dashboard/pack-course/CoursePackManagement.tsx";
 import NewCourseCreation from "@/components/dashboard/courses/NewCourseCreation.tsx";
 import CourseStructure from "@/components/dashboard/courses/course-structure/CourseStructure.tsx";
 import ModuleStructure from "@/components/dashboard/courses/module-structure/ModuleStructure.tsx";
+import LessonStructure from "@/components/dashboard/courses/lesson-structure/LessonStructure.tsx";
 
 const Dashboard = () => {
   const location = useLocation();
@@ -238,10 +238,10 @@ const Dashboard = () => {
               <Route path="/courses" element={<CourseManagement />} />
               <Route path="/training-path" element={<TrainingPathManagement />} />
               <Route path="/course-package" element={<CoursePackManagement />} />
-              <Route path="/course-creation" element={<CourseCreation />} />
               <Route path="/new-course" element={<NewCourseCreation />} />
               <Route path="/course-structure" element={<CourseStructure />} />
               <Route path="/module-structure" element={<ModuleStructure />} />
+              <Route path="/lesson-structure" element={<LessonStructure />} />
               <Route path="/users" element={<UserManagement />} />
               <Route path="/calendar" element={<DashboardCalendar />} />
               <Route path="/analytics" element={<DashboardAnalytics />} />
